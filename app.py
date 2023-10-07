@@ -72,12 +72,8 @@ if ticker:
     if news_table:
         parsed_data = []
         for row in news_table.findAll("tr"):
-            # title = row.a.text
-            if row.a is not None:
-                title = row.a.text
-            else:
-                title = "No Title Available"
-            date_data = row.td.text.split(" ")
+            title = row.a.text
+             date_data = row.td.text.split(" ")
             if len(date_data) == 1:
                 time = date_data[0]
             else:
