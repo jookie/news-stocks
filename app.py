@@ -73,7 +73,7 @@ if ticker:
         parsed_data = []
         for row in news_table.findAll("tr"):
             title = row.a.text
-             date_data = row.td.text.split(" ")
+            date_data = row.td.text.split(" ")
             if len(date_data) == 1:
                 time = date_data[0]
             else:
