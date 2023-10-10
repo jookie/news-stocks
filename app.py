@@ -68,6 +68,7 @@ if ticker:
 
     html = BeautifulSoup(response, features="html.parser")
     news_table = html.find(id="news-table")
+    news_tables[ticker] = news_table
 
     if news_table:
         parsed_data=[]
