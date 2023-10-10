@@ -70,9 +70,9 @@ if ticker:
     news_table = html.find(id="news-table")
     # news_tables[ticker] = news_table/
 
-if news_table:
-    parsed_data=[]
-    for ticker, news_table in news_tables.items():
+ if news_table:
+      parsed_data=[]
+      for ticker, news_table in news_tables.items():
         for row in news_table.findAll('tr'):
               if row.a:
                  title = row.a.text
@@ -85,7 +85,7 @@ if news_table:
                  parsed_data.append([ticker, date, time, title])
 
 
-        df = pd.DataFrame(
+       df = pd.DataFrame(
             parsed_data, columns=["Ticker", "Date", "Time", "Headline"]
         )
         vader = SentimentIntensityAnalyzer()
