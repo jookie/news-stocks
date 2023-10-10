@@ -70,10 +70,10 @@ if ticker:
     news_table = html.find(id="news-table")
     # news_tables[ticker] = news_table/
 
-    if news_table:
-        parsed_data=[]
-        for ticker, news_table in news_tables.items():
-           for row in news_table.findAll('tr'):
+if news_table:
+    parsed_data=[]
+    for ticker, news_table in news_tables.items():
+        for row in news_table.findAll('tr'):
               if row.a:
                  title = row.a.text
                  date_data = row.td.text.split()
