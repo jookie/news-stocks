@@ -78,7 +78,6 @@ if ticker:
                  date_data = row.td.text.split()
                  if len(date_data) == 1:
                      time = date_data[0]
-                 print(time)
                  else:
                     date = date_data[1]
                     time = date_data[0]
