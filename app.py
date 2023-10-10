@@ -77,13 +77,11 @@ if ticker:
                  title = row.a.text
                  date_data = row.td.text.split()
                  if len(date_data) == 1:
-                 time = date_data[0]
+                     time = date_data[0]
                  print(time)
                  else:
                     date = date_data[1]
                     time = date_data[0]
-#         print(time)
-#         print(date)
                  parsed_data.append([ticker, date, time, title])
 
 
