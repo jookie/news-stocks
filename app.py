@@ -55,7 +55,7 @@ example_ticker_symbols = [
 # Use a selectbox to allow users to choose from example ticker symbols
 ticker = st.selectbox("Select a stock ticker symbol or enter your own:", example_ticker_symbols)
 
-
+news_tables = {}
 if ticker:
     #Fetch stock price data
     current_date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -68,7 +68,7 @@ if ticker:
 
     html = BeautifulSoup(response, features="html.parser")
     news_table = html.find(id="news-table")
-    news_tables[ticker] = news_table
+    # news_tables[ticker] = news_table/
 
     if news_table:
         parsed_data=[]
