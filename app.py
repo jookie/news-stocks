@@ -70,19 +70,19 @@ if ticker:
       news_table = html.find(id="news-table")
       # news_tables[ticker] = news_table/
 if news_table:
-parsed_data=[]
-for ticker, news_table in news_tables.items():
-for row in news_table.findAll('tr'):
-      if row.a:
-         title = row.a.text
-         date_data = row.td.text.split()
-         if len(date_data) == 1:
-             time = date_data[0]
-         else:
-            date = date_data[1]
-            time = date_data[0]
-         parsed_data.append([ticker, date, time, title])
-
+      parsed_data=[]
+      for ticker, news_table in news_tables.items():
+      for row in news_table.findAll('tr'):
+            if row.a:
+                     title = row.a.text
+                     date_data = row.td.text.split()
+                     if len(date_data) == 1:
+                            time = date_data[0]
+                     else:
+                           date = date_data[1]
+                           time = date_data[0]
+                     parsed_data.append([ticker, date, time, title])
+      
 
 df = pd.DataFrame(
 parsed_data, columns=["Ticker", "Date", "Time", "Headline"]
