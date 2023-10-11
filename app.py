@@ -58,17 +58,17 @@ ticker = st.selectbox("Select a stock ticker symbol or enter your own:", example
 news_tables = {}
 if ticker:
 #Fetch stock price data
-current_date = datetime.datetime.now().strftime("%Y-%m-%d")
-stock_data = yf.download(ticker, start="2000-01-01", end=current_date)
+      current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+      stock_data = yf.download(ticker, start="2000-01-01", end=current_date)
 
-url = finviz_url + ticker
+      url = finviz_url + ticker
 
-req = Request(url=url, headers={"user-agent": "my-app"})
-response = urlopen(req)
+      req = Request(url=url, headers={"user-agent": "my-app"})
+      response = urlopen(req)
 
-html = BeautifulSoup(response, features="html.parser")
-news_table = html.find(id="news-table")
-# news_tables[ticker] = news_table/
+      html = BeautifulSoup(response, features="html.parser")
+      news_table = html.find(id="news-table")
+      # news_tables[ticker] = news_table/
 if news_table:
 parsed_data=[]
 for ticker, news_table in news_tables.items():
