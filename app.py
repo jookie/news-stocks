@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import yfinance as yf
 import datetime
-
+nltk.download('vader_lexicon')
 # Set page title and configure layout
 st.set_page_config(page_title="Stock Sentiment Analysis", layout="wide")
 
