@@ -8,7 +8,7 @@ import streamlit as st
 import yfinance as yf
 import datetime
 import nltk
-nltk.download('vader_lexicon')
+# nltk.download('vader_lexicon')
 from textblob import TextBlob
 # Set page title and configure layout
 st.set_page_config(page_title="Stock Sentiment Analysis", layout="wide")
