@@ -1,3 +1,5 @@
+import nltk
+nltk.download('vader_lexicon')
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -6,7 +8,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import yfinance as yf
 import datetime
-# nltk.download('vader_lexicon')
+
 # Set page title and configure layout
 st.set_page_config(page_title="Stock Sentiment Analysis", layout="wide")
 
