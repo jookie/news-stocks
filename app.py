@@ -8,8 +8,8 @@ import streamlit as st
 import yfinance as yf
 import datetime
 import nltk
-# nltk.download('vader_lexicon')
-from textblob import TextBlob
+nltk.download('vader_lexicon')
+
 # Set page title and configure layout
 st.set_page_config(page_title="Stock Sentiment Analysis", layout="wide")
 
@@ -60,7 +60,7 @@ ticker = st.selectbox("Select a stock ticker symbol or enter your own:", example
 
 news_tables = {}
 if ticker:
-      #Fetch stock price data
+      #Fetching stock price data
             current_date = datetime.datetime.now().strftime("%Y-%m-%d")
             stock_data = yf.download(ticker, start="2000-01-01", end=current_date)
       
@@ -72,41 +72,26 @@ if ticker:
             html = BeautifulSoup(response, features="html.parser")
             news_table = html.find(id="news-table")
             # news_tables[ticker] = news_table
-# if news_table:
-#             parsed_data=[]
-#             for ticker, news_table in news_tables.items():
-#               for row in news_table.findAll('tr'):
-#                   if row.a:
-#                            title = row.a.text
-#                            date_data = row.td.text.split()
-#                            if len(date_data) == 1:
-#                                   time = date_data[0]
-#                            else:
-#                                  date = date_data[1]
-#                                  time = date_data[0]
-#                            parsed_data.append([ticker, date, time, title])
 if news_table:
-    parsed_data = []
-    for ticker, news_table in news_tables.items():
-        for row in news_table.findAll('tr'):
-            if row.a:
-                title = row.a.text
-                date_data = row.td.text.split()
-                if len(date_data) == 1:
-                    time = date_data[0]
-                else:
-                    date = date_data[1]
-                    time = date_data[0]
-                # Analyze sentiment using TextBlob
-                sentiment = TextBlob(title).sentiment
-                compound_score = sentiment.polarity
-                parsed_data.append([ticker, date, time, title, compound_score])
+            parsed_data=[]
+            for ticker, news_table in news_tables.items():
+              for row in news_table.findAll('tr'):
+                  if row.a:
+                           title = row.a.text
+                           date_data = row.td.text.split()
+                           if len(date_data) == 1:
+                                  time = date_data[0]
+                           else:
+                                 date = date_data[1]
+                                 time = date_data[0]
+                           parsed_data.append([ticker, date, time, title])
+
       
             df = pd.DataFrame(parsed_data, columns=["Ticker", "Date", "Time", "Headline"])
-            # vader = SentimentIntensityAnalyzer()
-            # f = lambda title: vader.polarity_scores(title)["compound"]
-            # df["Compound Score"] = df["Headline"].apply(f)
-            # df["Date"] = pd.to_datetime(df["Date"], errors="coerce").dt.date
+            vader = SentimentIntensityAnalyzer()
+            f = lambda title: vader.polarity_scores(title)["compound"]
+            df["Compound Score"] = df["Headline"].apply(f)
+            df["Date"] = pd.to_datetime(df["Date"], errors="coerce").dt.date
             
             
             # Display data table
