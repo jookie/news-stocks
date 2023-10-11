@@ -1,12 +1,13 @@
 
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+# from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 import yfinance as yf
 import datetime
+import nltk
 nltk.download('vader_lexicon')
 from textblob import TextBlob
 # Set page title and configure layout
@@ -102,10 +103,10 @@ if news_table:
                 parsed_data.append([ticker, date, time, title, compound_score])
       
             df = pd.DataFrame(parsed_data, columns=["Ticker", "Date", "Time", "Headline"])
-            vader = SentimentIntensityAnalyzer()
-            f = lambda title: vader.polarity_scores(title)["compound"]
-            df["Compound Score"] = df["Headline"].apply(f)
-            df["Date"] = pd.to_datetime(df["Date"], errors="coerce").dt.date
+            # vader = SentimentIntensityAnalyzer()
+            # f = lambda title: vader.polarity_scores(title)["compound"]
+            # df["Compound Score"] = df["Headline"].apply(f)
+            # df["Date"] = pd.to_datetime(df["Date"], errors="coerce").dt.date
             
             
             # Display data table
