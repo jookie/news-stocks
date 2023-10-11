@@ -1,7 +1,8 @@
-
+import nltk
+nltk.download('vader_lexicon')
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
-# from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
