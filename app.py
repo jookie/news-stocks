@@ -84,37 +84,35 @@ if news_table:
                            parsed_data.append([ticker, date, time, title])
             
       
-      df = pd.DataFrame(
-      parsed_data, columns=["Ticker", "Date", "Time", "Headline"]
-      )
-      vader = SentimentIntensityAnalyzer()
-      f = lambda title: vader.polarity_scores(title)["compound"]
-      df["Compound Score"] = df["Headline"].apply(f)
-      df["Date"] = pd.to_datetime(df["Date"], errors="coerce").dt.date
-      
-      
-      # Display data table
-      st.subheader("News Headlines and Sentiment Scores")
-      st.dataframe(df)
-      
-      # Sentiment summary
-      sentiment_summary = {
-      "Average Score": df["Compound Score"].mean(),
-      "Positive": (df["Compound Score"] > 0).sum() / len(df) * 100,
-      "Negative": (df["Compound Score"] < 0).sum() / len(df) * 100,
-      "Neutral": (df["Compound Score"] == 0).sum() / len(df) * 100,
-      }
-      st.subheader("Sentiment Summary")
-      st.write(sentiment_summary)
-      
-      plt.figure(figsize=(10, 8))
-      plt.plot(stock_data.index, stock_data["Close"])
-      plt.xlabel("Date")
-      plt.ylabel("Stock Price")
-      plt.title("Stock Price Movements - Line Chart")
-      plt.xticks(rotation=45)
-      st.subheader("Stock Price Movements - Line Chart")
-      st.pyplot(plt)
+            df = pd.DataFrame(parsed_data, columns=["Ticker", "Date", "Time", "Headline"])
+            vader = SentimentIntensityAnalyzer()
+            f = lambda title: vader.polarity_scores(title)["compound"]
+            df["Compound Score"] = df["Headline"].apply(f)
+            df["Date"] = pd.to_datetime(df["Date"], errors="coerce").dt.date
+            
+            
+            # Display data table
+            st.subheader("News Headlines and Sentiment Scores")
+            st.dataframe(df)
+            
+            # Sentiment summary
+            sentiment_summary = {
+            "Average Score": df["Compound Score"].mean(),
+            "Positive": (df["Compound Score"] > 0).sum() / len(df) * 100,
+            "Negative": (df["Compound Score"] < 0).sum() / len(df) * 100,
+            "Neutral": (df["Compound Score"] == 0).sum() / len(df) * 100,
+            }
+            st.subheader("Sentiment Summary")
+            st.write(sentiment_summary)
+            
+            plt.figure(figsize=(10, 8))
+            plt.plot(stock_data.index, stock_data["Close"])
+            plt.xlabel("Date")
+            plt.ylabel("Stock Price")
+            plt.title("Stock Price Movements - Line Chart")
+            plt.xticks(rotation=45)
+            st.subheader("Stock Price Movements - Line Chart")
+            st.pyplot(plt)
 
 else:
       st.write("No news found for the entered stock ticker symbol.")
