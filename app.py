@@ -72,7 +72,7 @@ if ticker:
 if news_table:
       parsed_data=[]
       for ticker, news_table in news_tables.items():
-      for row in news_table.findAll('tr'):
+        for row in news_table.findAll('tr'):
             if row.a:
                      title = row.a.text
                      date_data = row.td.text.split()
