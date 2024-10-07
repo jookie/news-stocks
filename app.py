@@ -42,7 +42,7 @@ margin: 10px 0; /* Margin for paragraphs */
 st.markdown(custom_css, unsafe_allow_html=True)
 
 #page title and subtitle
-st.title("Stock Sentiment Analysis")
+st.title("Stock Sentiment Analysis - Jojo")
 st.markdown("Analyze the sentiment of news headlines and stock price movements for a given stock ticker symbol.")
 
 finviz_url = "https://finviz.com/quote.ashx?t="
